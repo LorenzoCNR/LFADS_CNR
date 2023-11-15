@@ -1,0 +1,36 @@
+- Fondamentale avere Anaconda e crreare un ambiente virtuale nel quale installare python 2. e tensrflow 1.
+  conda create – name tf_cpu python 2.7.18 tensorflow=1.15
+  source (conda) activate tf_cpu
+  installare anche mtplotlib e h5py
+
+- Clona i repo da questo git
+  git clone ...lfads_CNR
+  git clone....lfads-run-manager
+
+- aprire un bash e inserisci i percorsi (path) per entrambi i repo...
+   qualcosa tipo 
+  nano ~/.bashrc
+  export PYTHONPATH=$PYTHONPATH:/path/to/models/research/lfads/:/path/to/lfads-run- 	manager/src	\
+	export PATH=$PATH:/path/to/models/research/lfads/
+
+  salva e ricarica il bash
+  source ~/.bashrc
+
+- installare tmux (per multisession)
+  sudo apt install tmux
+- A questo punto apriamo matlab ricordando di aver inserito il path del bin in bash (vedi sopra)
+  in modo da poterlo far partire da qualunque location
+  export PATH=$PATH:/usr/local/MATLAB/R2022b/bin/
+
+- In matlab,facciamo girare file prova2 (nel repo) che arriva fino alla generazione dello script da far
+  girare nello shell
+
+- Tornare in shell e nell'ambiente virtual creato
+- avviare sessione tmux
+ tmux
+- lanciare script (al posto della tilde percorso di riferimento)
+
+~/lorenz_example/runs/exampleSingleRun/run_lfadsqueue.py
+
+###################################################################################################################################
+############################################## Da qui si lotta con le gpu ################################################################
