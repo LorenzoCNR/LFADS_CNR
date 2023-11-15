@@ -1,4 +1,4 @@
-LFADS" (Latent Factor Analysis via Dynamical Systems) è un metodo utilizzato per decomporre dati 
+LFADS (Latent Factor Analysis via Dynamical Systems) è un metodo utilizzato per decomporre dati 
 di serie temporali in vari fattori, tra cui una condizione iniziale, un sistema dinamico generativo,
 input di controllo per quel generatore e una descrizione a bassa dimensionalità dei dati osservati,
 chiamata "fattori". Inoltre, le osservazioni hanno un modello di rumore (in questo caso Poisson), 
