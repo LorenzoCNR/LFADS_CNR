@@ -1,3 +1,5 @@
+#### DA PROVARE CON PYTHON 3 e tf 2 ###
+
 - Fondamentale avere Anaconda e crreare un ambiente virtuale nel quale installare python 2. e tensrflow 1.
   conda create – name tf_cpu python 2.7.18 tensorflow=1.15
   source (conda) activate tf_cpu
@@ -32,5 +34,37 @@
 
 ~/lorenz_example/runs/exampleSingleRun/run_lfadsqueue.py
 
+-  Se vuoi vedere cosa accade nelle retrovie (il dataset creato è il dataset 1)
+	tmux attach -t lfads_param_YOs74u_run001_single_dataset001
+
 ###################################################################################################################################
 ############################################## Da qui si lotta con le gpu ################################################################
+
+Se vuoi impedire l’uso di gpu in run_lfads.py
+
+import os
+
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"  # Disabilita l'uso di tutte le GPU
+
+
+#import tensorflow as tf
+#tf.config.set_visible_devices([], 'GPU') o anche
+import tensorflow as tf
+tf.set_random_seed(42)  
+
+# all’’inizio del db
+from tensorflow.python.client import device_lib
+
+def get_available_gpus():
+    local_device_protos = device_lib.list_local_devices()
+    return [x.name for x in local_device_protos if x.device_type == 'GPU']
+
+# This line ensures that only CPU is used.
+os.environ['CUDA_VISIBLE_DEVICES'] = ''
+
+print(get_available_gpus())  # This should print an empty list.
+
+in lfads_train.sh inserisci che cambbia device a cpu:0
+(DISPLAY=:0 python $(which run_lfads.py) --device=/cpu:0 ... --allow_gpu_growth=false ... && python $(which run_lfads.py) ...) 2>&1 | tee /home/zlollo/CNR/lorenz_example/runs/exampleSingleRun/param_YOs74u/single_dataset001/lfads.out
+
+- in lfads run manager ho anche modificato lfadsqueue nelle parti in cui richiama GPU
