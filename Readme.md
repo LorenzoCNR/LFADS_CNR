@@ -7,16 +7,15 @@ LFADS utilizza a reti neurali ricorrenti artificiali non lineari per analizzare 
 LFADS si basa sull'assunto che l'attività di spiking in una singola prova dipende dalle dinamiche sottostanti caratteristiche dell'area cerebrale registrata e la  variabilità di spiking sia di tipo Poisson.
 L'attività di spiking inoltre dipende dalle dinimiche caratteristiche l'area del cervello considerata e ci spno degli input non misurati da altre aree cerebrali
 
-Nel modello LFADS, le dinamiche sottostanti (presupposto 1) sono generate da una rete neurale ricorrente, il "generatore". Questa rete estrae "fattori dinamici" usati per generare e inferire i firing rates dei neuroni registrati. I firing rates inferiti
+Nel modello LFADS, le dinamiche sottostanti (presupposto 1) sono generate da una rete neurale ricorrente, il "generatore". Questa rete estrae "fattori dinamici" usati per generare e inferire i firing rates dei neuroni registrati. I firing rates inferiti generano potenziali d'azione seconod un processo di Poisson. (Presupposto 4)
 Le condizioni iniziali e gli input per la rete generatrice (presupposti 2 e 3) vengono estratti dai dati di spiking per ogni prova tramite altre reti neurali ricorrenti, l'"encoder" e il "controller". Oltre alle sequenze di spike binari, nessun'altra informazione specifica della prova viene fornita al modello.
 
 LFADS sfrutta la capacità delle reti neurali ricorrenti non lineari di riprodurre complessi schemi temporali di attività che stanno alla base dei dati neurali. A differenza dei metodi convenzionali, LFADS combina informazioni ottenute da tutti i neuroni registrati in tutte le prove, producendo tassi di spiking de-noised per ogni neurone in ogni prova.
 
-Il metodo è stato applicato a vari dataset provenienti dalle corteccie motorie e premotorie di macachi rhesus e dalla corteccia motoria umana, mostrando che i tassi di spiking estratti da LFADS possono essere utilizzati per stimare variabili comportamentali in modo significativamente più accurato rispetto ad altre tecniche. LFADS cattura inoltre caratteristiche dei dati su molteplici scale temporali e può combinare dati da sessioni di registrazione non sovrapposte per migliorare le prestazioni su ogni sessione. Infine, LFADS dimostra la capacità di inferire input a un circuito neurale analizzando dati da un compito di raggiungimento del braccio con una perturbazione a metà prova.
+Il metodo è stato applicato a vari dataset provenienti dalle corteccie motorie e premotorie di macachi rhesus e dalla corteccia motoria umana, mostrando che i tassi di spiking estratti da LFADS possono essere utilizzati per stimare variabili comportamentali in modo significativamente più accurato rispetto ad altre tecniche. LFADS cattura inoltre caratteristiche dei dati su molteplici scale temporali e può combinare dati da sessioni di registrazione non sovrapposte per migliorare le prestazioni su ogni sessione. Infine, LFADS dimostra la capacità di inferire input a un circuito neurale analizzando dati da un compito di movimrnyo col braccio perturbato a metà prova.
 
-Inoltre, le osservazioni hanno un modello di rumore (in questo caso Poisson), 
-quindi viene anche creato una versione denoise delle osservazioni, 
-ad esempio i tassi sottostanti di una distribuzione di Poisson dati i conteggi degli eventi osservati.
+STRUTTURA DEI DATI
+
 La struttura dati principale è un dizionario di dizionari di dati con una struttura specifica:
 
 Il dizionario di livello superiore contiene nomi (stringhe) associati a dizionari di dati specifici.
